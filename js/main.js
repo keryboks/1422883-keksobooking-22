@@ -6,9 +6,9 @@ return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и 
 console.log(getRandomIntInclusive(1, 20));
 
 
-function getRandomFloat(min, max) {
+function getRandomFloat(min, max,number) {
 let a = Math.random() * (max - min) + min;
-let b = parseFloat(a.toFixed(1));
+let b = parseFloat(a.toFixed(number));
 if (b <0) {
     console.log("Ошибка!минимальное число меньше нуля");
 }if(max<min){
@@ -16,4 +16,4 @@ if (b <0) {
 }
 return b ;
 }
-console.log(getRandomFloat(1,10,1));
+console.log(getRandomFloat(1,10,4));
