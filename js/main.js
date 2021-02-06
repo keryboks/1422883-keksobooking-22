@@ -1,14 +1,19 @@
 function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+min = Math.ceil(min);
+max = Math.floor(max);
+return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
-
+console.log(getRandomIntInclusive(1, 20));
 
 
 function getRandomFloat(min, max) {
-    let a = Math.random() * (max - min) + min;
-   let b = parseFloat(a.toFixed(1));
-return b;
-  }
-
+let a = Math.random() * (max - min) + min;
+let b = parseFloat(a.toFixed(1));
+if (b <0) {
+    console.log("Ошибка!минимальное число меньше нуля");
+}if(max<min){
+    console.log("Ошибка!Максимальное значение больше,чем минимальное");
+}
+return b ;
+}
+console.log(getRandomFloat(1,10,1));
