@@ -150,5 +150,4 @@ const createFeatures = () => {
 
 const similarFeatures = new Array(similarFeaturesCount).fill(null).map(() =>
 createFeatures());
-;
 console.log( similarFeatures);
