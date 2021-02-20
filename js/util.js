@@ -17,4 +17,74 @@ function getRandomFloat(min, max, number) {
   return b;
 }
 
-export {getRandomIntInclusive, getRandomFloat};
+function arrayRandElement(arr) {
+  let rand = Math.floor(Math.random() * arr.length);
+
+
+  return arr[rand];
+}
+
+
+
+
+
+function zeroPad(num, places) {
+  return String(num).padStart(places, '0')
+}
+console.log(zeroPad(2, 2));
+
+function arrayRandNumber(arr) {
+  console.log(arr);
+  let randNumber = Math.floor(Math.random() * arr.length);
+
+  return zeroPad(arr[randNumber], 2);
+}
+
+
+let featuresArray = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+
+function arrayRandFeatures(arr) {
+  let randFeatures = Math.floor(Math.random() * arr.length);
+  return arr[randFeatures];
+
+};
+function arrayRandCheckout(arr) {
+  let randCheckout = Math.floor(Math.random() * arr.length);
+  return arr[randCheckout];
+
+};
+
+function arrayRandCheckin(arr) {
+  let randCheckin = Math.floor(Math.random() * arr.length);
+  return arr[randCheckin];
+
+};
+
+function arrayRandPhotos(arr) {
+  let randPhotos = Math.floor(Math.random() * arr.length);
+  return arr[randPhotos];
+
+};
+
+function arrayRandDescription(arr) {
+  let randDescription = Math.floor(Math.random() * arr.length);
+  return arr[randDescription];
+
+};
+function arrayRandTitle(arr) {
+  let randTitle = Math.floor(Math.random() * arr.length);
+  return arr[randTitle];
+
+};
+function unique(arr) {
+  let result = [];
+  for (let str of featuresArray) {
+    if (!result.includes(str)) {
+      result.push(str);
+    };
+  };
+  return result;
+
+};
+
+export {getRandomIntInclusive, getRandomFloat,arrayRandElement, zeroPad, arrayRandNumber,arrayRandFeatures,arrayRandCheckout,arrayRandCheckin,arrayRandPhotos, arrayRandDescription,arrayRandTitle, unique,featuresArray};
