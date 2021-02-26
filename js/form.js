@@ -8,13 +8,13 @@ let houseInformation ={
   bungalow: 0,
   flat: 1000,
   house: 5000,
-  palace: 10000,
+  mansion: 10000,
 };
 
 
 typeOfPlace.addEventListener('change',function(){
-  priceOfPlace.min = houseOfInformation[typeOfPlace.value]  ;
-priceOfPlace.placeholder = houseOfInformation[typeOfPlace.value];
+  priceOfPlace.min = houseInformation[typeOfPlace.value]  ;
+priceOfPlace.placeholder = houseInformation[typeOfPlace.value];
 
 });
 
