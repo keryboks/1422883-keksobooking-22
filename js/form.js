@@ -8,7 +8,7 @@ let houseInformation ={
   bungalow: 0,
   flat: 1000,
   house: 5000,
-  mansion: 10000,
+  place: 10000,
 };
 
 
@@ -21,13 +21,13 @@ priceOfPlace.placeholder = houseInformation[typeOfPlace.value];
 
 timeIn.addEventListener('change',function(){
 if(timeIn.value){
-timeIn.value = timeOut.value;
+timeOut.value = timeIn.value;
 }
 });
 
 timeOut.addEventListener('change',function(){
   if(timeOut.value){
-  timeOut.value = timeIn.value;
+  timeIn.value = timeOut.value;
   }
   });
 export{typeOfPlace,priceOfPlace,timeIn,timeOut,houseInformation};
