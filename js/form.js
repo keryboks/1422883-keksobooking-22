@@ -8,7 +8,7 @@ let houseInformation ={
   bungalow: 0,
   flat: 1000,
   house: 5000,
-  place: 10000,
+  palace: 10000,
 };
 
 
