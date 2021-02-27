@@ -4,9 +4,26 @@ import {createCard} from './popup.js';
 var mapCanvas = document.querySelector('.map__canvas');
 let simCards =[];
   similarFeatures.forEach(card =>{
-  simCards.push(createCard(card))
+ simCards.push(createCard(card))
 })
-
-mapCanvas.appendChild(simCards[0])
+ mapCanvas.appendChild(simCards[0])
 
 import{typeOfPlace,priceOfPlace,timeIn,timeOut,houseInformation} from './form.js'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
