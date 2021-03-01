@@ -5,25 +5,7 @@ var mapCanvas = document.querySelector('.map__canvas');
 let simCards =[];
   similarFeatures.forEach(card =>{
  simCards.push(createCard(card))
-})
+});
  mapCanvas.appendChild(simCards[0])
 
-import{typeOfPlace,priceOfPlace,timeIn,timeOut,houseInformation} from './form.js'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import {typeOfPlace, priceOfPlace, timeIn, timeOut, houseInformation} from './form.js'
