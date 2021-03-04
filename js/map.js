@@ -1,4 +1,4 @@
-import{simCards} from './data.js'
+import{similarFeatures} from './data.js'
 import{createCard} from './popup.js'
 const map = L.map('map-canvas')
 .on('load',() =>{
@@ -19,7 +19,7 @@ console.log('Карта Инициализирована');
 
 
   const pinIcon = L.icon({
-    iconURL:'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
+    iconUrl:'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
     iconSize:[40,40],
     iconAnchor:[20,40],
   })
@@ -48,12 +48,11 @@ mainPinMarker.on('move',(evt)=>{
 });
 
 
- simCards.forEach(({author,offer,location})=>{
-
+ similarFeatures.forEach(({author,offer,location})=>{
   const marker = L.marker({
 
-    lat:location.y,
-    lng:location.x,
+    lat:location.x,
+    lng:location.y,
   },
 
   {
@@ -66,6 +65,7 @@ mainPinMarker.on('move',(evt)=>{
   );
  });
 
-console.log(addOnMap);
 
-export{map,mainPinIcon,mainPinMarker};
+
+export{map,mainPinIcon,mainPinMarker,marker,pinIcon};
+
