@@ -9,6 +9,7 @@ console.log( similarFeatures);
 let simCards =[];
   similarFeatures.forEach(card =>{
  simCards.push(createCard(card))
-});
+})
+ mapCanvas.appendChild(simCards[0])
 
-
+import{typeOfPlace,priceOfPlace,timeIn,timeOut,houseInformation} from './form.js'
