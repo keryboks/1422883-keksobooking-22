@@ -31,4 +31,3 @@ timeOut.addEventListener('change', function () {
   }
 });
 export { typeOfPlace, priceOfPlace, timeIn, timeOut, houseInformation };
-
