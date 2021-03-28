@@ -109,11 +109,6 @@ let removeElements = function () {
 }
 
 
-let displayOnMap = function () {
-  mapFilters.reset();
-  mapFiltersChange()
-}
-
 let removeMainPinIcon = function () {
   markers.forEach(item => {
     map.removeLayer(item);
@@ -128,16 +123,21 @@ let mapFiltersChange = debounce(function () {
 
     createMarker(author, offer, location);
 
-  })
-})
+  });
+});
+
+let displayOnMap = function () {
+  mapFilters.reset();
+  mapFiltersChange();
+};
 
 
 let onSuccess = function (data) {
   advertisements = data.slice(0);
-  genMap(data)
-  mapFilters.addEventListener('change', mapFiltersChange)
-  activeForm()
-}
+  genMap(data);
+  mapFilters.addEventListener('change', mapFiltersChange);
+  activeForm();
+};
 
 
 getData(onSuccess, onErrorGetData);
