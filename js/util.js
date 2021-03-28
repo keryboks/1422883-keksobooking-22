@@ -1,9 +1,23 @@
+let DEBOUNCE_INTERVAL = 500;
+let alertShowTime = 500;
+let debounce = function (fun) {
+  let lastTimeout = null;
+  return function () {
+    let args = arguments;
+    if (lastTimeout) {
+      window.clearTimeout(lastTimeout);
+    }
+    lastTimeout = window.setTimeout(function () {
+      fun.apply(null, args);
+    }, DEBOUNCE_INTERVAL)
+  };
+};
+
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-console.log(getRandomIntInclusive(1, 20));
 
 
 function getRandomFloat(min, max, number) {
@@ -24,22 +38,15 @@ function arrayRandElement(arr) {
   return arr[rand];
 }
 
-
-
-
-
 function zeroPad(num, places) {
   return String(num).padStart(places, '0')
 }
-console.log(zeroPad(2, 2));
+
 
 function arrayRandNumber(arr) {
-  console.log(arr);
   let randNumber = Math.floor(Math.random() * arr.length);
-
   return zeroPad(arr[randNumber], 2);
 }
-
 
 let featuresArray = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 
@@ -87,4 +94,29 @@ function unique(arr) {
 
 };
 
-export {getRandomIntInclusive, getRandomFloat,arrayRandElement, zeroPad, arrayRandNumber,arrayRandFeatures,arrayRandCheckout,arrayRandCheckin,arrayRandPhotos, arrayRandDescription,arrayRandTitle, unique,featuresArray};
+
+const onErrorGetData = (err) => {
+  const mapContainer = document.querySelector('.map');
+  const errorBlock = document.createElement('div');
+
+  errorBlock.style.zIndex = 1000;
+  errorBlock.style.position = 'absolute';
+  errorBlock.style.left = 0;
+  errorBlock.style.bottom = '50px';
+  errorBlock.style.right = 0;
+  errorBlock.style.padding = '10px 5px';
+  errorBlock.style.fontSize = '16px';
+  errorBlock.style.textAlign = 'center';
+  errorBlock.style.color = 'white';
+  errorBlock.style.backgroundColor = 'red';
+
+  errorBlock.textContent = err;
+
+  mapContainer.append(errorBlock);
+
+  setTimeout(() => {
+    errorBlock.remove();
+  }, alertShowTime);
+};
+
+export { onErrorGetData, debounce, getRandomIntInclusive, getRandomFloat, arrayRandElement, zeroPad, arrayRandNumber, arrayRandFeatures, arrayRandCheckout, arrayRandCheckin, arrayRandPhotos, arrayRandDescription, arrayRandTitle, unique, featuresArray };
