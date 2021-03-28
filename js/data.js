@@ -1,4 +1,4 @@
-import {getRandomIntInclusive, getRandomFloat,arrayRandElement, zeroPad, arrayRandNumber,arrayRandFeatures,arrayRandCheckout,arrayRandCheckin,arrayRandPhotos, arrayRandDescription,arrayRandTitle, unique,featuresArray} from './util.js'
+import { getRandomIntInclusive, getRandomFloat, arrayRandElement, zeroPad, arrayRandNumber, arrayRandFeatures, arrayRandCheckout, arrayRandCheckin, arrayRandPhotos, arrayRandDescription, arrayRandTitle, unique, featuresArray } from './util.js'
 
 let typeArray = ['place', 'flat', 'house', 'bungalow'];
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -28,32 +28,30 @@ const createFeatures = () => {
   let randTitleIndex = arrayRandTitle(titleArray);
 
   return {
-    author :{
-    avatar: 'img/avatars/user' + randomNumbersArrayIndex + '.png',
+    author: {
+      avatar: 'img/avatars/user' + randomNumbersArrayIndex + '.png',
     }
-    ,offer:{
-    title: randTitleIndex,
-    type: randomTypeIndex,
-    features: featuresUnique,
-    checkin: randomCheckinIndex,
-    checkout: randomCheckoutIndex,
-    photos: randomPhotosIndex,
-    rooms: randomRooms,
-    guests: randomGuests,
-    price: randomPrice,
-    address: 'location ' + randomAddressX + ' location ' + randomAddressY,
-    description: randomDescriptionIndex,
+    , offer: {
+      title: randTitleIndex,
+      type: randomTypeIndex,
+      features: featuresUnique,
+      checkin: randomCheckinIndex,
+      checkout: randomCheckoutIndex,
+      photos: randomPhotosIndex,
+      rooms: randomRooms,
+      guests: randomGuests,
+      price: randomPrice,
+      address: 'location ' + randomAddressX + ' location ' + randomAddressY,
+      description: randomDescriptionIndex,
     }
-    ,location:{
-    X: randomLocationX,
-    Y: randomLocationY,
+    , location: {
+      X: randomLocationX,
+      Y: randomLocationY,
     }
   };
 };
 
 const similarFeatures = new Array(similarFeaturesCount).fill(null).map(() =>
-createFeatures());
+  createFeatures());
 
-console.log( similarFeatures);
-
-export{similarFeaturesCount,createFeatures, similarFeatures,typeArray,numbersArray,checkinArray,checkoutArray,photosArray,descriptionArray, titleArray};
+export { similarFeaturesCount, createFeatures, similarFeatures, typeArray, numbersArray, checkinArray, checkoutArray, photosArray, descriptionArray, titleArray };

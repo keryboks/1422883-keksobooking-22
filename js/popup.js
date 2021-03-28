@@ -1,18 +1,31 @@
-const createCard = (card) =>{
+const createCard = (card) => {
 
-const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
-const cardElement = cardTemplate.cloneNode(true);
+  const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
+  const cardElement = cardTemplate.cloneNode(true);
+  const {offer, author} = card;
 
-cardElement.querySelector('.popup__title').textContent=card.offer.tittle;
-cardElement.querySelector('.popup__text--address').textContent=card.offer.address;
-cardElement.querySelector('.popup__text--price').textContent=`${card.offer.price} ₽/ночь`;
-cardElement.querySelector('.popup__type').textContent=card.offer.type;
-cardElement.querySelector('.popup__text--capacity').textContent=`${card.offer.rooms} комнаты для ${card.offer.guests} гостей `;
-cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${card.offer.checkin}, выезд до ${card.offer.checkout}`;
-cardElement.querySelector('.popup__features').textContent = card.offer.fetures;
-cardElement.querySelector('.popup__description').textContent = card.offer.description;
-cardElement.querySelector('.popup__photo').src = card.offer.photos;
-  cardElement.querySelector('.popup__avatar').src = card.author.avatar;
+  const titleInput = cardElement.querySelector('.popup__title')
+  const addressInput = cardElement.querySelector('.popup__text--address')
+  const priceInput = cardElement.querySelector('.popup__text--price')
+  const typeInput = cardElement.querySelector('.popup__type')
+  const roomsInput =cardElement.querySelector('.popup__text--capacity')
+  const checkinInput = cardElement.querySelector('.popup__text--time')
+  const featuresInput = cardElement.querySelector('.popup__features')
+  const descriptionInput =cardElement.querySelector('.popup__description')
+  const photosIMG = cardElement.querySelector('.popup__photo')
+  const avatarIMG = cardElement.querySelector('.popup__avatar')
+
+  offer.title ?  titleInput.textContent = offer.title : titleInput.remove();
+  offer.address ? addressInput.textContent = offer.address : addressInput.remove();
+  offer.price ? priceInput.textContent = `${offer.price} ₽/ночь` : priceInput.remove();
+  offer.type ? typeInput.textContent = offer.type : offer.type.remove();
+  offer.rooms ? roomsInput.textContent = `${offer.rooms} комнаты для ${offer.guests} гостей ` : roomsInput.remove();
+  offer.checkin ? checkinInput.textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}` : checkinInput.remove();
+  offer.features ? featuresInput.textContent = offer.fetures : featuresInput.remove();
+  offer.description ? descriptionInput.textContent = offer.description : descriptionInput.remove();
+  offer.photo ? photosIMG.src = offer.photos : photosIMG.remove();
+  author.avatar ? avatarIMG.src = author.avatar : avatarIMG.remove();
   return cardElement;
 }
-export{createCard};
+
+export { createCard };
