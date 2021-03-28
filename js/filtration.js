@@ -1,4 +1,3 @@
-let data = [];
 const PriceRange = {
   LOW: {
     MIN: 0,
@@ -13,12 +12,12 @@ const PriceRange = {
     MAX: 1000000000000,
   }
 };
-let mapFilters = document.querySelector('.map__filters')
-let filterItems = mapFilters.querySelectorAll('select, input');
+
+let mapFilters = document.querySelector('.map__filters');
 let housingType = mapFilters.querySelector('#housing-type');
 let housingPrice = mapFilters.querySelector('#housing-price');
 let housingRooms = mapFilters.querySelector('#housing-rooms');
-let housingGuests = mapFilters.querySelector('#housing-guests')
+let housingGuests = mapFilters.querySelector('#housing-guests');
 let housingFeatures = mapFilters.querySelector('#housing-features');
 
 let filtrationItem = function (evt, item, key) {
@@ -34,11 +33,9 @@ var filtrationByPrice = function (item) {
   return filteringPrice ? item.offer.price >= filteringPrice.MIN && item.offer.price <= filteringPrice.MAX : true;
 };
 
-
 let filterByRooms = function (item) {
   return filtrationItem(housingRooms, item.offer, 'rooms')
 };
-
 
 let filterByGuest = function (item) {
   return filtrationItem(housingGuests, item.offer, 'guests');
@@ -53,9 +50,6 @@ let filterByFeature = function (item) {
 
 let filterChange = function (array) {
   return array.filter(filterByType).filter(filtrationByPrice).filter(filterByRooms).filter(filterByGuest).filter(filterByFeature)
-
-}
-
-
+};
 
 export { filterChange };

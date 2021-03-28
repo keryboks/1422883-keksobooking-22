@@ -9,7 +9,6 @@ const getData = function (onSuccess, onFail) {
     });
 };
 
-
 const sendData = (onSuccess, onFail, body) => {
   fetch(
     'https://22.javascript.pages.academy/keksobooking',
@@ -29,4 +28,5 @@ const sendData = (onSuccess, onFail, body) => {
       onFail('Не удалось отправить форму. Попробуйте еще раз');
     });
 };
+
 export { sendData, getData }
