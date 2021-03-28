@@ -1,11 +1,9 @@
-import {getRandomIntInclusive, getRandomFloat,arrayRandElement, zeroPad, arrayRandNumber,arrayRandFeatures,arrayRandCheckout,arrayRandCheckin,arrayRandPhotos, arrayRandDescription,arrayRandTitle, unique,featuresArray} from './util.js';
-import {similarFeaturesCount,createFeatures, similarFeatures,typeArray,numbersArray,checkinArray,checkoutArray,photosArray,descriptionArray, titleArray} from './data.js';
-import {createCard} from './popup.js';
-var mapCanvas = document.querySelector('.map__canvas');
-let simCards =[];
-  similarFeatures.forEach(card =>{
- simCards.push(createCard(card))
-});
- mapCanvas.appendChild(simCards[0])
 
-import {typeOfPlace, priceOfPlace, timeIn, timeOut, houseInformation} from './form.js'
+import  './util.js';
+import './data.js';
+import  './popup.js';
+import  './form.js';
+import  './validation.js';
+import './fetch.js';
+import './filtration.js';
+import './map.js';
