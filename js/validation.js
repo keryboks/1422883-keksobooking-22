@@ -31,7 +31,6 @@ price.addEventListener('input', function () {
   price.reportValidity();
 });
 
-
 roomNumber.addEventListener('change', function () {
   if (roomNumber.value === '100') {
     capicity.value = 0;
@@ -46,5 +45,3 @@ capicity.addEventListener('change', function () {
     roomNumber.value = capicity.value;
   };
 });
-
-

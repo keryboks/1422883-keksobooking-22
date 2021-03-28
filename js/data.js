@@ -1,6 +1,18 @@
-import { getRandomIntInclusive, getRandomFloat, arrayRandElement, zeroPad, arrayRandNumber, arrayRandFeatures, arrayRandCheckout, arrayRandCheckin, arrayRandPhotos, arrayRandDescription, arrayRandTitle, unique, featuresArray } from './util.js'
+import {
+  getRandomIntInclusive,
+  getRandomFloat,
+  arrayRandElement,
+  arrayRandNumber,
+  arrayRandCheckout,
+  arrayRandCheckin,
+  arrayRandPhotos,
+  arrayRandDescription,
+  arrayRandTitle,
+  unique,
+  featuresArray
+} from './util.js'
 
-let typeArray = ['place', 'flat', 'house', 'bungalow'];
+let typesArray = ['place', 'flat', 'house', 'bungalow'];
 let numbersArray = [1, 2, 3, 4, 5, 6, 7, 8];
 let checkinArray = ['12:00', '13:00', '14:00'];
 let checkoutArray = ['12:00', '13:00', '14:00'];
@@ -11,7 +23,7 @@ let titleArray = ['New York', 'Monaco', 'Minsk', 'Rome', 'Barcelona', 'Madrid'];
 const similarFeaturesCount = 10;
 const createFeatures = () => {
 
-  let randomTypeIndex = arrayRandElement(typeArray);
+  let randomTypeIndex = arrayRandElement(typesArray);
   let randomNumbersArrayIndex = arrayRandNumber(numbersArray);
   let featuresUnique = unique(featuresArray);
   let randomCheckinIndex = arrayRandCheckin(checkinArray);
@@ -54,4 +66,15 @@ const createFeatures = () => {
 const similarFeatures = new Array(similarFeaturesCount).fill(null).map(() =>
   createFeatures());
 
-export { similarFeaturesCount, createFeatures, similarFeatures, typeArray, numbersArray, checkinArray, checkoutArray, photosArray, descriptionArray, titleArray };
+export {
+  similarFeaturesCount,
+  createFeatures,
+  similarFeatures,
+  typesArray,
+  numbersArray,
+  checkinArray,
+  checkoutArray,
+  photosArray,
+  descriptionArray,
+  titleArray,
+};

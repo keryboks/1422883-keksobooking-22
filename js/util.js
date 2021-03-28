@@ -1,5 +1,8 @@
-let DEBOUNCE_INTERVAL = 500;
-let alertShowTime = 500;
+const DEBOUNCE_INTERVAL = 500;
+const ALERT_SHOW_TIME = 500;
+
+let featuresArray = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+
 let debounce = function (fun) {
   let lastTimeout = null;
   return function () {
@@ -19,22 +22,14 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 function getRandomFloat(min, max, number) {
   let a = Math.random() * (max - min) + min;
   let b = parseFloat(a.toFixed(number));
-  if (b < 0) {
-    console.log("Ошибка!минимальное число меньше нуля");
-  } if (max < min) {
-    console.log("Ошибка!Максимальное значение больше,чем минимальное");
-  }
   return b;
 }
 
 function arrayRandElement(arr) {
   let rand = Math.floor(Math.random() * arr.length);
-
-
   return arr[rand];
 }
 
@@ -42,48 +37,42 @@ function zeroPad(num, places) {
   return String(num).padStart(places, '0')
 }
 
-
 function arrayRandNumber(arr) {
   let randNumber = Math.floor(Math.random() * arr.length);
   return zeroPad(arr[randNumber], 2);
 }
 
-let featuresArray = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-
 function arrayRandFeatures(arr) {
   let randFeatures = Math.floor(Math.random() * arr.length);
   return arr[randFeatures];
-
 };
+
 function arrayRandCheckout(arr) {
   let randCheckout = Math.floor(Math.random() * arr.length);
   return arr[randCheckout];
-
 };
 
 function arrayRandCheckin(arr) {
   let randCheckin = Math.floor(Math.random() * arr.length);
   return arr[randCheckin];
-
 };
 
 function arrayRandPhotos(arr) {
   let randPhotos = Math.floor(Math.random() * arr.length);
   return arr[randPhotos];
-
 };
 
 function arrayRandDescription(arr) {
   let randDescription = Math.floor(Math.random() * arr.length);
   return arr[randDescription];
-
 };
+
 function arrayRandTitle(arr) {
   let randTitle = Math.floor(Math.random() * arr.length);
   return arr[randTitle];
-
 };
-function unique(arr) {
+
+function unique() {
   let result = [];
   for (let str of featuresArray) {
     if (!result.includes(str)) {
@@ -91,9 +80,7 @@ function unique(arr) {
     };
   };
   return result;
-
 };
-
 
 const onErrorGetData = (err) => {
   const mapContainer = document.querySelector('.map');
@@ -116,7 +103,23 @@ const onErrorGetData = (err) => {
 
   setTimeout(() => {
     errorBlock.remove();
-  }, alertShowTime);
+  }, ALERT_SHOW_TIME);
 };
 
-export { onErrorGetData, debounce, getRandomIntInclusive, getRandomFloat, arrayRandElement, zeroPad, arrayRandNumber, arrayRandFeatures, arrayRandCheckout, arrayRandCheckin, arrayRandPhotos, arrayRandDescription, arrayRandTitle, unique, featuresArray };
+export {
+  onErrorGetData,
+  debounce,
+  getRandomIntInclusive,
+  getRandomFloat,
+  arrayRandElement,
+  zeroPad,
+  arrayRandNumber,
+  arrayRandFeatures,
+  arrayRandCheckout,
+  arrayRandCheckin,
+  arrayRandPhotos,
+  arrayRandDescription,
+  arrayRandTitle,
+  unique,
+  featuresArray
+};
