@@ -12,6 +12,7 @@ const PriceRange = {
     MAX: 1000000000000,
   },
 };
+
 let mapFilters = document.querySelector(".map__filters");
 let housingType = mapFilters.querySelector("#housing-type");
 let housingPrice = mapFilters.querySelector("#housing-price");

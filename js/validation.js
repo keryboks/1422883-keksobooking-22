@@ -34,6 +34,7 @@ price.addEventListener("input", function () {
   price.reportValidity();
 });
 
+
 const validationRoomsAndGuests = function () {
   const roomValue = Number(roomNumber.value);
   const guestsValue = Number(capicity.value);

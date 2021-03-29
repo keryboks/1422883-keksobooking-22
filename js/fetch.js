@@ -31,4 +31,5 @@ const sendData = function (onSuccess, onFail, body) {
       onFail("Не удалось отправить форму. Попробуйте еще раз");
     });
 };
-export { sendData, getData };
+
+export {sendData, getData};

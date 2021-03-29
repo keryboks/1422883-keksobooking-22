@@ -36,14 +36,14 @@ let createMarker = function (author, offer, location) {
     .addTo(map)
     .bindPopup(createCard({ author, offer }),
   );
+
   markers.push(marker);
 };
 
 let generateMap = function (data) {
+
   data.slice(0, SIMILAR_POPUP_COUNT).forEach(({ author, offer, location }) => {
-
     createMarker(author, offer, location);
-
   });
 };
 
@@ -72,6 +72,7 @@ let displayOnMap = function () {
   mapFilters.reset();
   mapFiltersChange();
 };
+
 
 let getSuccessStatus = function (data) {
   advertisements = data.slice(0);

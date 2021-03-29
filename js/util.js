@@ -1,7 +1,8 @@
 let DEBOUNCE_INTERVAL = 500;
-let alertShowTime = 500;
+let ALERT_SHOW_TIME = 500;
 
 let setDebounce = function (fun) {
+
   let lastTimeout = null;
   return function () {
     let args = arguments;
@@ -91,7 +92,7 @@ const showAlert = (err) => {
 
   setTimeout(() => {
     errorBlock.remove();
-  }, alertShowTime);
+  }, ALERT_SHOW_TIME);
 };
 
 export {

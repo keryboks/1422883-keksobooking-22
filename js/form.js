@@ -1,4 +1,3 @@
-
 import {
   removeMainPinIcon,
   setDefaultAddress,
@@ -6,8 +5,6 @@ import {
   displayOnMap,
 } from "./map.js";
 import { sendData } from "./fetch.js";
-
-
 
 let main = document.querySelector("main");
 let typeOfPlace = document.querySelector("#type");
@@ -33,6 +30,7 @@ const keys = {
 };
 
 typeOfPlace.addEventListener("change", function () {
+
   priceOfPlace.min = houseInformation[typeOfPlace.value];
   priceOfPlace.placeholder = houseInformation[typeOfPlace.value];
 });
@@ -67,6 +65,7 @@ let disableForm = function () {
   mapFilters.classList.add("map__filters--disabled");
 
   for (let i = 0; i < textFields.length; i++) {
+
     textFields[i].setAttribute("disabled", "disabled");
   }
 
@@ -124,12 +123,12 @@ let showErrorMesage = () => {
 const setUserFormSubmit = () => {
   adForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
-
     sendData(showSuccessMessage, showErrorMesage, new FormData(evt.target));
   });
 };
 
 setUserFormSubmit();
+
 
 adFormReset.addEventListener("click", function (evt) {
   evt.preventDefault();
