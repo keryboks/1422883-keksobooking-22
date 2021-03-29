@@ -1,18 +1,22 @@
 
-import { removeMainPinIcon, setDefaultAddress, resetMainPinMarker, displayOnMap } from './map.js'
-import { sendData } from './fetch.js'
+import {
+  removeMainPinIcon,
+  setDefaultAddress,
+  resetMainPinMarker,
+  displayOnMap,
+} from "./map.js";
+import { sendData } from "./fetch.js";
 
-
-let typeOfPlace = document.querySelector('#type');
-let priceOfPlace = document.querySelector('#price');
-let timeIn = document.querySelector('#timein');
-let timeOut = document.querySelector('#timeout');
-let adForm = document.querySelector('.ad-form');
-let mapFilters = document.querySelector('.map__filters');
-let textFields = document.querySelectorAll('fieldset');
-let selects = document.querySelectorAll('select');
-let adFormReset = document.querySelector('.ad-form__reset');
-
+let main = document.querySelector("main");
+let typeOfPlace = document.querySelector("#type");
+let priceOfPlace = document.querySelector("#price");
+let timeIn = document.querySelector("#timein");
+let timeOut = document.querySelector("#timeout");
+let adForm = document.querySelector(".ad-form");
+let mapFilters = document.querySelector(".map__filters");
+let textFields = document.querySelectorAll("fieldset");
+let selects = document.querySelectorAll("select");
+let adFormReset = document.querySelector(".ad-form__reset");
 
 const houseInformation = {
   bungalow: 0,
@@ -26,116 +30,113 @@ const keys = {
   ESC: "Esc",
 };
 
-
-typeOfPlace.addEventListener('change', function () {
+typeOfPlace.addEventListener("change", function () {
   priceOfPlace.min = houseInformation[typeOfPlace.value];
   priceOfPlace.placeholder = houseInformation[typeOfPlace.value];
-
 });
 
-
-timeIn.addEventListener('change', function () {
+timeIn.addEventListener("change", function () {
   if (timeIn.value) {
     timeOut.value = timeIn.value;
-  };
+  }
 });
 
-timeOut.addEventListener('change', function () {
+timeOut.addEventListener("change", function () {
   if (timeOut.value) {
     timeIn.value = timeOut.value;
   }
 });
 
-
 let activeForm = function () {
 
-  adForm.classList.remove('ad-form--disabled');
-  mapFilters.classList.remove('map__filters--disabled')
+  adForm.classList.remove("ad-form--disabled");
+  mapFilters.classList.remove("map__filters--disabled");
 
   for (let i = 0; i < textFields.length; i++) {
-    textFields[i].removeAttribute('disabled');
+    textFields[i].removeAttribute("disabled");
   }
   for (let i = 0; i < selects.length; i++) {
-    selects[i].removeAttribute('disabled');
+    selects[i].removeAttribute("disabled");
   }
+};
 
-}
 let disableForm = function () {
-  adForm.classList.add('ad-form--disabled');
-  mapFilters.classList.add('map__filters--disabled')
+  adForm.classList.add("ad-form--disabled");
+  mapFilters.classList.add("map__filters--disabled");
 
   for (let i = 0; i < textFields.length; i++) {
-    textFields[i].setAttribute('disabled', 'disabled');
+    textFields[i].setAttribute("disabled", "disabled");
   }
 
   for (let i = 0; i < selects.length; i++) {
-    selects[i].setAttribute('disabled', 'disabled')
+    selects[i].setAttribute("disabled", "disabled");
   }
-}
-disableForm()
+};
 
+disableForm();
 
 let closeMessage = function (message) {
-  document.addEventListener('keydown', function (evt) {
+  document.addEventListener("keydown", function (evt) {
     if (evt.key === keys.ESCAPE || evt.key === keys.ESC) {
       message.remove();
     }
   });
-}
-document.addEventListener('click', function () {
-  let errorMessage = document.querySelector('.error')
-  let successMessage = document.querySelector('.success')
+};
+
+document.addEventListener("click", function () {
+  let errorMessage = document.querySelector(".error");
+  let successMessage = document.querySelector(".success");
   if (errorMessage) {
-    errorMessage.remove()
+    errorMessage.remove();
   } if (successMessage) {
-    successMessage.remove()
+    successMessage.remove();
   }
-})
+});
 
-
-let main = document.querySelector('main');
 let showSuccessMessage = () => {
-  let messageSuccessTemplate = document.querySelector('#success').content
-  let messageSuccessShow = messageSuccessTemplate.querySelector('.success')
-  let messageSuccess = messageSuccessTemplate.cloneNode(true);
-  main.appendChild(messageSuccessShow)
-  closeMessage(messageSuccessShow)
+  let messageSuccessTemplate = document.querySelector("#success").content;
+  let messageSuccessShow = messageSuccessTemplate.querySelector(".success");
+  main.appendChild(messageSuccessShow);
+  closeMessage(messageSuccessShow);
   removeMainPinIcon();
   adForm.reset();
   mapFilters.reset();
   setDefaultAddress();
   resetMainPinMarker();
-  displayOnMap()
-
-}
+  displayOnMap();
+};
 
 let showErrorMesage = () => {
-  let messageErrorTemplate = document.querySelector('#error').content;
-  let messageErrorShow = messageErrorTemplate.querySelector('.error');
-  let messageError = messageErrorTemplate.cloneNode(true);
+  let messageErrorTemplate = document.querySelector("#error").content;
+  let messageErrorShow = messageErrorTemplate.querySelector(".error");
 
   closeMessage(messageErrorShow);
 
   main.appendChild(messageErrorShow);
-
-}
-
-
+};
 
 const setUserFormSubmit = () => {
-  adForm.addEventListener('submit', (evt) => {
+  adForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
-    sendData(showSuccessMessage, showErrorMesage, new FormData(evt.target));
-    console.log(evt.target)
 
+    sendData(showSuccessMessage, showErrorMesage, new FormData(evt.target));
   });
 };
 
 setUserFormSubmit();
-adFormReset.addEventListener('click', function () {
+adFormReset.addEventListener("click", function () {
   adForm.reset();
   mapFilters.reset();
+});
 
-})
-
-export { setUserFormSubmit, activeForm, typeOfPlace, priceOfPlace, timeIn, timeOut, houseInformation, adForm, mapFilters };
+export {
+  setUserFormSubmit,
+  activeForm,
+  typeOfPlace,
+  priceOfPlace,
+  timeIn,
+  timeOut,
+  houseInformation,
+  adForm,
+  mapFilters
+};
