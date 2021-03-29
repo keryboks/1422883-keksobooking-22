@@ -27,7 +27,7 @@ const houseInformation = {
 
 const keys = {
   Escape: "Escape",
-  ESC: "Esc",
+  Esc: "Esc",
 };
 
 typeOfPlace.addEventListener("change", function () {
@@ -47,7 +47,7 @@ timeOut.addEventListener("change", function () {
   }
 });
 
-let activeForm = function () {
+let activateForm = function () {
 
   adForm.classList.remove("ad-form--disabled");
   mapFilters.classList.remove("map__filters--disabled");
@@ -77,7 +77,7 @@ disableForm();
 
 let closeMessage = function (message) {
   document.addEventListener("keydown", function (evt) {
-    if (evt.key === keys.ESCAPE || evt.key === keys.ESC) {
+    if (evt.key === keys.Escape || evt.key === keys.Esc) {
       message.remove();
     }
   });
@@ -93,17 +93,26 @@ document.addEventListener("click", function () {
   }
 });
 
+let resetForm = function(){
+  removeMainPinIcon();
+  adForm.reset();
+  mapFilters.reset();
+  resetMainPinMarker();
+  displayOnMap();
+  setDefaultAddress();
+};
+
+adFormReset.addEventListener("click", function(){
+
+  resetForm();
+});
+
 let showSuccessMessage = () => {
   let messageSuccessTemplate = document.querySelector("#success").content;
   let messageSuccessShow = messageSuccessTemplate.querySelector(".success");
   main.appendChild(messageSuccessShow);
   closeMessage(messageSuccessShow);
-  removeMainPinIcon();
-  adForm.reset();
-  mapFilters.reset();
-  setDefaultAddress();
-  resetMainPinMarker();
-  displayOnMap();
+  resetForm();
 };
 
 let showErrorMesage = () => {
@@ -131,12 +140,13 @@ adFormReset.addEventListener("click", function () {
 
 export {
   setUserFormSubmit,
-  activeForm,
+  activateForm,
   typeOfPlace,
   priceOfPlace,
   timeIn,
   timeOut,
   houseInformation,
   adForm,
-  mapFilters
+  mapFilters,
+  disableForm,
 };

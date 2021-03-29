@@ -2,8 +2,9 @@ let DEBOUNCE_INTERVAL = 500;
 let alertShowTime = 500;
 
 let featuresArray = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"];
+let results = [];
 
-let debounce = function (fun) {
+let setDebounce = function (fun) {
   let lastTimeout = null;
   return function () {
     let args = arguments;
@@ -73,24 +74,23 @@ function arrayRandTitle(arr) {
 }
 
 function unique() {
-  let result = [];
   for (let str of featuresArray) {
-    if (!result.includes(str)) {
-      result.push(str);
+    if (!results.includes(str)) {
+      results.push(str);
     }
   }
-  return result;
+  return results;
 }
 
-const onErrorGetData = (err) => {
+const showAlert = (err) => {
   const mapContainer = document.querySelector(".map");
   const errorBlock = document.createElement("div");
 
-  errorBlock.style.zIndex = 1000;
+  errorBlock.style.zIndex = "1000";
   errorBlock.style.position = "absolute";
-  errorBlock.style.left = 0;
+  errorBlock.style.left = "0";
   errorBlock.style.bottom = "50px";
-  errorBlock.style.right = 0;
+  errorBlock.style.right = "0";
   errorBlock.style.padding = "10px 5px";
   errorBlock.style.fontSize = "16px";
   errorBlock.style.textAlign = "center";
@@ -107,8 +107,8 @@ const onErrorGetData = (err) => {
 };
 
 export {
-  onErrorGetData,
-  debounce,
+  showAlert,
+  setDebounce,
   getRandomIntInclusive,
   getRandomFloat,
   arrayRandElement,

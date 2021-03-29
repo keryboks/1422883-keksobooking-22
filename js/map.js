@@ -1,8 +1,8 @@
 import { createCard } from "./popup.js";
-import { onErrorGetData, debounce } from "./util.js";
+import { showAlert, setDebounce } from "./util.js";
 import { getData } from "./fetch.js";
 import { filterChange } from "./filtration.js";
-import { mapFilters, activeForm } from "./form.js";
+import { mapFilters, activateForm} from "./form.js";
 
 const SIMILAR_POPUP_COUNT = 10;
 
@@ -16,8 +16,72 @@ let LNG = 139.692;
 let advertisements = [];
 
 let setDefaultAddress = function () {
-  address.value = LAT + "," + LNG;
+  address.value = LAT + ", " + LNG;
 };
+
+let resetMainPinMarker = function () {
+  mainPinMarker.setLatLng(L.latLng(LAT, LNG));
+};
+
+let createMarker = function (author, offer, location) {
+
+  const marker = L.marker({
+
+    lat: location.lat,
+    lng: location.lng,
+  },
+    {
+      icon: pinIcon,
+    });
+
+  marker
+    .addTo(map)
+    .bindPopup(createCard({ author, offer }),
+  );
+  markers.push(marker);
+};
+
+let generateMap = function (data) {
+  data.slice(0, SIMILAR_POPUP_COUNT).forEach(({ author, offer, location }) => {
+
+    createMarker(author, offer, location);
+
+  });
+};
+
+let removeElements = function () {
+  layerGroup.clearLayers();
+};
+
+let removeMainPinIcon = function () {
+  markers.forEach(item => {
+    map.removeLayer(item);
+  });
+};
+
+let mapFiltersChange = setDebounce(function () {
+  removeElements();
+  removeMainPinIcon();
+  let filterData = filterChange(advertisements);
+  filterData.forEach(({ author, offer, location }) => {
+
+    createMarker(author, offer, location);
+
+  });
+});
+
+let displayOnMap = function () {
+  mapFilters.reset();
+  mapFiltersChange();
+};
+
+let onSuccess = function (data) {
+  advertisements = data.slice(0);
+  generateMap(data);
+  mapFilters.addEventListener("change", mapFiltersChange);
+  activateForm();
+};
+
 const map = L.map("map-canvas")
   .on("load", () => {
     address.setAttribute("readonly", true);
@@ -59,81 +123,18 @@ const mainPinMarker = L.marker(
 
 mainPinMarker.addTo(map);
 
-let resetMainPinMarker = function () {
-  mainPinMarker.setLatLng(L.latLng(LAT, LNG));
-};
-
 mainPinMarker.on("moveend", (evt) => {
   address.value = evt.target.getLatLng().lat.toFixed(numbersAfterDot) + ", " + evt.target.getLatLng().lng.toFixed(numbersAfterDot);
 });
 
-let createMarker = function (author, offer, location) {
-
-  const marker = L.marker({
-
-    lat: location.lat,
-    lng: location.lng,
-  },
-    {
-      icon: pinIcon,
-    });
-
-  marker
-    .addTo(map)
-    .bindPopup(createCard({ author, offer }),
-  );
-  markers.push(marker);
-};
-
-let genMap = function (data) {
-  data.slice(0, SIMILAR_POPUP_COUNT).forEach(({ author, offer, location }) => {
-
-    createMarker(author, offer, location);
-
-  });
-};
-
 let layerGroup = L.layerGroup().addTo(map);
 
-let removeElements = function () {
-  layerGroup.clearLayers();
-};
-
-let removeMainPinIcon = function () {
-  markers.forEach(item => {
-    map.removeLayer(item);
-  });
-};
-
-let mapFiltersChange = debounce(function () {
-  removeElements();
-  removeMainPinIcon();
-  let filterData = filterChange(advertisements);
-  filterData.forEach(({ author, offer, location }) => {
-
-    createMarker(author, offer, location);
-
-  });
-});
-
-let displayOnMap = function () {
-  mapFilters.reset();
-  mapFiltersChange();
-};
-
-let onSuccess = function (data) {
-  advertisements = data.slice(0);
-  genMap(data);
-  mapFilters.addEventListener("change", mapFiltersChange);
-  activeForm();
-};
-
-getData(onSuccess, onErrorGetData);
+getData(onSuccess, showAlert);
 
 export {
   removeMainPinIcon,
   displayOnMap,
-  genMap,
+  generateMap,
   createMarker,
   arrayFromServer,
   arrayModefied,
