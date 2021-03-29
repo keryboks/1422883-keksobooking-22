@@ -33,7 +33,7 @@ function arrayRandElement(arr) {
 }
 
 function zeroPad(num, places) {
-  return String(num).padStart(places, "0");
+  return String(num).padStart(places, '0');
 }
 
 function arrayRandNumber(arr) {
@@ -72,19 +72,19 @@ function arrayRandTitle(arr) {
 }
 
 const showAlert = (err) => {
-  const mapContainer = document.querySelector(".map");
-  const errorBlock = document.createElement("div");
+  const mapContainer = document.querySelector('.map');
+  const errorBlock = document.createElement('div');
 
-  errorBlock.style.zIndex = "1000";
-  errorBlock.style.position = "absolute";
-  errorBlock.style.left = "0";
-  errorBlock.style.bottom = "50px";
-  errorBlock.style.right = "0";
-  errorBlock.style.padding = "10px 5px";
-  errorBlock.style.fontSize = "16px";
-  errorBlock.style.textAlign = "center";
-  errorBlock.style.color = "white";
-  errorBlock.style.backgroundColor = "red";
+  errorBlock.style.zIndex = '1000';
+  errorBlock.style.position = 'absolute';
+  errorBlock.style.left = '0';
+  errorBlock.style.bottom = '50px';
+  errorBlock.style.right = '0';
+  errorBlock.style.padding = '10px 5px';
+  errorBlock.style.fontSize = '16px';
+  errorBlock.style.textAlign = 'center';
+  errorBlock.style.color = 'white';
+  errorBlock.style.backgroundColor = 'red';
 
   errorBlock.textContent = err;
 

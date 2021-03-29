@@ -3,19 +3,19 @@ import {
   setDefaultAddress,
   resetMainPinMarker,
   displayOnMap,
-} from "./map.js";
-import { sendData } from "./fetch.js";
+} from './map.js';
+import { sendData } from './fetch.js';
 
-let main = document.querySelector("main");
-let typeOfPlace = document.querySelector("#type");
-let priceOfPlace = document.querySelector("#price");
-let timeIn = document.querySelector("#timein");
-let timeOut = document.querySelector("#timeout");
-let adForm = document.querySelector(".ad-form");
-let mapFilters = document.querySelector(".map__filters");
-let textFields = document.querySelectorAll("fieldset");
-let selects = document.querySelectorAll("select");
-let adFormReset = document.querySelector(".ad-form__reset");
+let main = document.querySelector('main');
+let typeOfPlace = document.querySelector('#type');
+let priceOfPlace = document.querySelector('#price');
+let timeIn = document.querySelector('#timein');
+let timeOut = document.querySelector('#timeout');
+let adForm = document.querySelector('.ad-form');
+let mapFilters = document.querySelector('.map__filters');
+let textFields = document.querySelectorAll('fieldset');
+let selects = document.querySelectorAll('select');
+let adFormReset = document.querySelector('.ad-form__reset');
 
 const houseInformation = {
   bungalow: 0,
@@ -25,23 +25,23 @@ const houseInformation = {
 };
 
 const keys = {
-  Escape: "Escape",
-  Esc: "Esc",
+  Escape: 'Escape',
+  Esc: 'Esc',
 };
 
-typeOfPlace.addEventListener("change", function () {
+typeOfPlace.addEventListener('change', function () {
 
   priceOfPlace.min = houseInformation[typeOfPlace.value];
   priceOfPlace.placeholder = houseInformation[typeOfPlace.value];
 });
 
-timeIn.addEventListener("change", function () {
+timeIn.addEventListener('change', function () {
   if (timeIn.value) {
     timeOut.value = timeIn.value;
   }
 });
 
-timeOut.addEventListener("change", function () {
+timeOut.addEventListener('change', function () {
   if (timeOut.value) {
     timeIn.value = timeOut.value;
   }
@@ -49,44 +49,44 @@ timeOut.addEventListener("change", function () {
 
 let activateForm = function () {
 
-  adForm.classList.remove("ad-form--disabled");
-  mapFilters.classList.remove("map__filters--disabled");
+  adForm.classList.remove('ad-form--disabled');
+  mapFilters.classList.remove('map__filters--disabled');
 
   for (let i = 0; i < textFields.length; i++) {
-    textFields[i].removeAttribute("disabled");
+    textFields[i].removeAttribute('disabled');
   }
   for (let i = 0; i < selects.length; i++) {
-    selects[i].removeAttribute("disabled");
+    selects[i].removeAttribute('disabled');
   }
 };
 
 let disableForm = function () {
-  adForm.classList.add("ad-form--disabled");
-  mapFilters.classList.add("map__filters--disabled");
+  adForm.classList.add('ad-form--disabled');
+  mapFilters.classList.add('map__filters--disabled');
 
   for (let i = 0; i < textFields.length; i++) {
 
-    textFields[i].setAttribute("disabled", "disabled");
+    textFields[i].setAttribute('disabled', 'disabled');
   }
 
   for (let i = 0; i < selects.length; i++) {
-    selects[i].setAttribute("disabled", "disabled");
+    selects[i].setAttribute('disabled', 'disabled');
   }
 };
 
 disableForm();
 
 let closeMessage = function (message) {
-  document.addEventListener("keydown", function (evt) {
+  document.addEventListener('keydown', function (evt) {
     if (evt.key === keys.Escape || evt.key === keys.Esc) {
       message.remove();
     }
   });
 };
 
-document.addEventListener("click", function () {
-  let errorMessage = document.querySelector(".error");
-  let successMessage = document.querySelector(".success");
+document.addEventListener('click', function () {
+  let errorMessage = document.querySelector('.error');
+  let successMessage = document.querySelector('.success');
   if (errorMessage) {
     errorMessage.remove();
   } if (successMessage) {
@@ -104,16 +104,16 @@ let resetForm = function () {
 };
 
 let showSuccessMessage = () => {
-  let messageSuccessTemplate = document.querySelector("#success").content;
-  let messageSuccessShow = messageSuccessTemplate.querySelector(".success");
+  let messageSuccessTemplate = document.querySelector('#success').content;
+  let messageSuccessShow = messageSuccessTemplate.querySelector('.success');
   main.appendChild(messageSuccessShow);
   closeMessage(messageSuccessShow);
   resetForm();
 };
 
 let showErrorMesage = () => {
-  let messageErrorTemplate = document.querySelector("#error").content;
-  let messageErrorShow = messageErrorTemplate.querySelector(".error");
+  let messageErrorTemplate = document.querySelector('#error').content;
+  let messageErrorShow = messageErrorTemplate.querySelector('.error');
 
   closeMessage(messageErrorShow);
 
@@ -121,7 +121,7 @@ let showErrorMesage = () => {
 };
 
 const setUserFormSubmit = () => {
-  adForm.addEventListener("submit", (evt) => {
+  adForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     sendData(showSuccessMessage, showErrorMesage, new FormData(evt.target));
   });
@@ -130,7 +130,7 @@ const setUserFormSubmit = () => {
 setUserFormSubmit();
 
 
-adFormReset.addEventListener("click", function (evt) {
+adFormReset.addEventListener('click', function (evt) {
   evt.preventDefault();
   resetForm();
 });

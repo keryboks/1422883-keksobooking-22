@@ -13,19 +13,19 @@ const PriceRange = {
   },
 };
 
-let mapFilters = document.querySelector(".map__filters");
-let housingType = mapFilters.querySelector("#housing-type");
-let housingPrice = mapFilters.querySelector("#housing-price");
-let housingRooms = mapFilters.querySelector("#housing-rooms");
-let housingGuests = mapFilters.querySelector("#housing-guests");
-let housingFeatures = mapFilters.querySelector("#housing-features");
+let mapFilters = document.querySelector('.map__filters');
+let housingType = mapFilters.querySelector('#housing-type');
+let housingPrice = mapFilters.querySelector('#housing-price');
+let housingRooms = mapFilters.querySelector('#housing-rooms');
+let housingGuests = mapFilters.querySelector('#housing-guests');
+let housingFeatures = mapFilters.querySelector('#housing-features');
 
 let setFiltrationItem = function (evt, item, key) {
-  return evt.value === "any" ? true : evt.value === item[key];
+  return evt.value === 'any' ? true : evt.value === item[key];
 };
 
 let filterByType = function (item) {
-  return setFiltrationItem(housingType, item.offer, "type");
+  return setFiltrationItem(housingType, item.offer, 'type');
 };
 
 let setFiltrationByPrice = function (item) {
@@ -34,15 +34,15 @@ let setFiltrationByPrice = function (item) {
 };
 
 let filterByRooms = function (item) {
-  return setFiltrationItem(housingRooms, item.offer, "rooms");
+  return setFiltrationItem(housingRooms, item.offer, 'rooms');
 };
 
 let filterByGuest = function (item) {
-  return setFiltrationItem(housingGuests, item.offer, "guests");
+  return setFiltrationItem(housingGuests, item.offer, 'guests');
 };
 
 let filterByFeature = function (item) {
-  let cheackedFeaturesItem = housingFeatures.querySelectorAll("input:checked");
+  let cheackedFeaturesItem = housingFeatures.querySelectorAll('input:checked');
   return Array.from(cheackedFeaturesItem).every(function (element) {
     return item.offer.features.includes(element.value);
   });

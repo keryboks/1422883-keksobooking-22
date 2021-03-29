@@ -1,20 +1,20 @@
-import { createCard } from "./popup.js";
-import { showAlert, setDebounce } from "./util.js";
-import { getData } from "./fetch.js";
-import { filterChange } from "./filtration.js";
-import { mapFilters, activateForm} from "./form.js";
+import { createCard } from './popup.js';
+import { showAlert, setDebounce } from './util.js';
+import { getData } from './fetch.js';
+import { filterChange } from './filtration.js';
+import { mapFilters, activateForm} from './form.js';
 
 const SIMILAR_POPUP_COUNT = 10;
 
 let markers = [];
 let numbersAfterDot = 5;
-let address = document.querySelector("#address");
+let address = document.querySelector('#address');
 let LAT = 35.6895;
 let LNG = 139.692;
 let advertisements = [];
 
 let setDefaultAddress = function () {
-  address.value = LAT + ", " + LNG;
+  address.value = LAT + ', ' + LNG;
 };
 
 let resetMainPinMarker = function () {
@@ -77,13 +77,13 @@ let displayOnMap = function () {
 let getSuccessStatus = function (data) {
   advertisements = data.slice(0);
   generateMap(data);
-  mapFilters.addEventListener("change", mapFiltersChange);
+  mapFilters.addEventListener('change', mapFiltersChange);
   activateForm();
 };
 
-const map = L.map("map-canvas")
-  .on("load", () => {
-    address.setAttribute("readonly", true);
+const map = L.map('map-canvas')
+  .on('load', () => {
+    address.setAttribute('readonly', true);
     setDefaultAddress();
   })
   .setView({
@@ -91,21 +91,21 @@ const map = L.map("map-canvas")
     lng: LNG,
   }, 10);
 const pinIcon = L.icon({
-  iconUrl: "https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg",
+  iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
 
 L.tileLayer(
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
-    attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+    attribution: '&copy; <a href=\'https://www.openstreetmap.org/copyright\'>OpenStreetMap</a> contributors',
   },
 )
   .addTo(map);
 
 const mainPinIcon = L.icon({
-  iconUrl: "https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg",
+  iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
@@ -122,8 +122,8 @@ const mainPinMarker = L.marker(
 
 mainPinMarker.addTo(map);
 
-mainPinMarker.on("moveend", (evt) => {
-  address.value = evt.target.getLatLng().lat.toFixed(numbersAfterDot) + ", " + evt.target.getLatLng().lng.toFixed(numbersAfterDot);
+mainPinMarker.on('moveend', (evt) => {
+  address.value = evt.target.getLatLng().lat.toFixed(numbersAfterDot) + ', ' + evt.target.getLatLng().lng.toFixed(numbersAfterDot);
 });
 
 let layerGroup = L.layerGroup().addTo(map);
