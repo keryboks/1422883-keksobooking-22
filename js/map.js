@@ -9,8 +9,6 @@ const SIMILAR_POPUP_COUNT = 10;
 let markers = [];
 let numbersAfterDot = 5;
 let address = document.querySelector("#address");
-let arrayFromServer = [];
-let arrayModefied = [];
 let LAT = 35.6895;
 let LNG = 139.692;
 let advertisements = [];
@@ -75,7 +73,7 @@ let displayOnMap = function () {
   mapFiltersChange();
 };
 
-let onSuccess = function (data) {
+let getSuccessStatus = function (data) {
   advertisements = data.slice(0);
   generateMap(data);
   mapFilters.addEventListener("change", mapFiltersChange);
@@ -129,15 +127,14 @@ mainPinMarker.on("moveend", (evt) => {
 
 let layerGroup = L.layerGroup().addTo(map);
 
-getData(onSuccess, showAlert);
+getData(getSuccessStatus, showAlert);
 
 export {
   removeMainPinIcon,
   displayOnMap,
   generateMap,
   createMarker,
-  arrayFromServer,
-  arrayModefied,
   setDefaultAddress,
   resetMainPinMarker,
+  address,
 };

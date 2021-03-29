@@ -7,6 +7,8 @@ import {
 } from "./map.js";
 import { sendData } from "./fetch.js";
 
+
+
 let main = document.querySelector("main");
 let typeOfPlace = document.querySelector("#type");
 let priceOfPlace = document.querySelector("#price");
@@ -93,7 +95,7 @@ document.addEventListener("click", function () {
   }
 });
 
-let resetForm = function(){
+let resetForm = function () {
   removeMainPinIcon();
   adForm.reset();
   mapFilters.reset();
@@ -101,11 +103,6 @@ let resetForm = function(){
   displayOnMap();
   setDefaultAddress();
 };
-
-adFormReset.addEventListener("click", function(){
-
-  resetForm();
-});
 
 let showSuccessMessage = () => {
   let messageSuccessTemplate = document.querySelector("#success").content;
@@ -133,9 +130,10 @@ const setUserFormSubmit = () => {
 };
 
 setUserFormSubmit();
-adFormReset.addEventListener("click", function () {
-  adForm.reset();
-  mapFilters.reset();
+
+adFormReset.addEventListener("click", function (evt) {
+  evt.preventDefault();
+  resetForm();
 });
 
 export {

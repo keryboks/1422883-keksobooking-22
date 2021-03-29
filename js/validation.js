@@ -2,6 +2,9 @@ let minLength = 30;
 let maxLength = 100;
 let maxPrice = 1000000;
 let minPrice = 0;
+let maxRoom = 100;
+let notForGuests = 0;
+
 let price = document.querySelector("#price");
 let roomNumber = document.querySelector("#room_number");
 let capicity = document.querySelector("#capacity");
@@ -31,20 +34,28 @@ price.addEventListener("input", function () {
   price.reportValidity();
 });
 
+const validationRoomsAndGuests = function () {
+  const roomValue = Number(roomNumber.value);
+  const guestsValue = Number(capicity.value);
+
+  if (roomValue < guestsValue && guestsValue !== notForGuests) {
+    roomNumber.setCustomValidity("Слишком мало комнат");
+  } else if (roomValue === maxRoom & guestsValue !== notForGuests) {
+    roomNumber.setCustomValidity("Такое количество комнат не для гостей");
+  } else if (roomValue !== maxRoom && guestsValue === notForGuests) {
+    roomNumber.setCustomValidity("Выберите другой вариант");
+  } else {
+    roomNumber.setCustomValidity("");
+  }
+
+  roomNumber.reportValidity();
+};
 
 roomNumber.addEventListener("change", function () {
-  if (roomNumber.value === "100") {
-    capicity.value = 0;
-  } else {
-    capicity.value = roomNumber.value;
-  }
-});
-capicity.addEventListener("change", function () {
-  if (capicity.value === "0") {
-    roomNumber.value = 100;
-  } else {
-    roomNumber.value = capicity.value;
-  }
+  validationRoomsAndGuests();
 });
 
+capicity.addEventListener("change", function () {
+  validationRoomsAndGuests();
+});
 

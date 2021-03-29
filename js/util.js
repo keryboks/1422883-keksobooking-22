@@ -1,9 +1,6 @@
 let DEBOUNCE_INTERVAL = 500;
 let alertShowTime = 500;
 
-let featuresArray = ["wifi", "dishwasher", "parking", "washer", "elevator", "conditioner"];
-let results = [];
-
 let setDebounce = function (fun) {
   let lastTimeout = null;
   return function () {
@@ -73,15 +70,6 @@ function arrayRandTitle(arr) {
   return arr[randTitle];
 }
 
-function unique() {
-  for (let str of featuresArray) {
-    if (!results.includes(str)) {
-      results.push(str);
-    }
-  }
-  return results;
-}
-
 const showAlert = (err) => {
   const mapContainer = document.querySelector(".map");
   const errorBlock = document.createElement("div");
@@ -120,6 +108,4 @@ export {
   arrayRandPhotos,
   arrayRandDescription,
   arrayRandTitle,
-  unique,
-  featuresArray,
 };
