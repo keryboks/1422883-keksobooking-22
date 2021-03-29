@@ -136,5 +136,4 @@ export {
   createMarker,
   setDefaultAddress,
   resetMainPinMarker,
-  address,
 };
