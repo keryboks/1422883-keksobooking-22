@@ -2,8 +2,7 @@ const getData = function (onSuccess, onFail) {
   fetch('https://22.javascript.pages.academy/keksobooking/data')
     .then(function (response) {
       return response.json();
-    }
-    )
+    })
     .then(function (data) {
       onSuccess(data);
     })

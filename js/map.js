@@ -28,14 +28,13 @@ let createMarker = function (author, offer, location) {
     lat: location.lat,
     lng: location.lng,
   },
-    {
-      icon: pinIcon,
-    });
+  {
+    icon: pinIcon,
+  });
 
   marker
     .addTo(map)
-    .bindPopup(createCard({ author, offer }),
-  );
+    .bindPopup(createCard({ author, offer }));
 
   markers.push(marker);
 };
@@ -136,5 +135,5 @@ export {
   generateMap,
   createMarker,
   setDefaultAddress,
-  resetMainPinMarker,
+  resetMainPinMarker
 };

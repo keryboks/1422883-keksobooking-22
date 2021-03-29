@@ -108,5 +108,5 @@ export {
   arrayRandCheckin,
   arrayRandPhotos,
   arrayRandDescription,
-  arrayRandTitle,
+  arrayRandTitle
 };

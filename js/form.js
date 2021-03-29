@@ -2,7 +2,7 @@ import {
   removeMainPinIcon,
   setDefaultAddress,
   resetMainPinMarker,
-  displayOnMap,
+  displayOnMap
 } from './map.js';
 import { sendData } from './fetch.js';
 
@@ -145,5 +145,5 @@ export {
   houseInformation,
   adForm,
   mapFilters,
-  disableForm,
+  disableForm
 };
