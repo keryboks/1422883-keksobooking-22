@@ -9,8 +9,8 @@ const SIMILAR_POPUP_COUNT = 10;
 let markers = [];
 let numbersAfterDot = 5;
 let address = document.querySelector('#address');
-let LAT = 35.6895;
-let LNG = 139.692;
+let LAT = 35.68951;
+let LNG = 139.69171;
 let advertisements = [];
 
 let setDefaultAddress = function () {
